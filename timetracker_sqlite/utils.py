@@ -2,7 +2,7 @@ import time
 import datetime
 import sqlite3
 from prettytable import PrettyTable
-from config import TABLENAME
+from .config import TABLENAME
 
 
 class Db:

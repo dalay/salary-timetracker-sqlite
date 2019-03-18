@@ -3,7 +3,7 @@
 import sys
 import sqlite3
 import click
-from config import DB_FILE
+from .config import DB_FILE
 from .utils import Db, Timetracker
 
 
