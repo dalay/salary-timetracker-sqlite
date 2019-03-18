@@ -1,8 +1,24 @@
+import sys
 import time
 import datetime
 import sqlite3
+from subprocess import check_output, CalledProcessError
 from prettytable import PrettyTable
-from .config import TABLENAME
+
+
+TABLENAME = 'timetracker'
+
+
+def get_git_root():
+    '''
+    Return the absolute path to the root directory of the git-repository.
+    '''
+    try:
+        base = check_output(['git', 'rev-parse', '--show-toplevel'])
+    except CalledProcessError:
+        sys.exit(
+            'ERROR! At the moment you are not inside a git-repository!\nThe app finishes its work..')
+    return base.decode('utf-8').strip()
 
 
 def format_comment(comment, max_line_length):

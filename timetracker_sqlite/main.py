@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 
+import os
 import sys
 import sqlite3
 import click
-from .config import DB_FILE
-from .utils import Db, Timetracker
+# from .config import DB_FILE
+from .utils import Db, Timetracker, get_git_root
+
+DB_FILE = os.path.join(get_git_root(), 'timetracker.sqlite')
 
 
 @click.command()
