@@ -31,15 +31,15 @@ def main(show_all=None, show_paid=None, show_unpaid=None, stats=None,
                     msg = 'Time worked (unpaid): %s hours' % round(
                         minutes / 60, 1)
                     click.echo(msg)
-                if show_all:
-                    tt.show_entries()
-                if show_paid:
-                    tt.show_entries(1)
-                if show_unpaid:
-                    tt.show_entries(0)
-                if mark_paid:
+                elif show_all:
+                    click.echo(tt.show_entries())
+                elif show_paid:
+                    click.echo(tt.show_entries(1))
+                elif show_unpaid:
+                    click.echo(tt.show_entries(0))
+                elif mark_paid:
                     tt.mark_all_as_paid()
-                if del_paid:
+                elif del_paid:
                     tt.del_table_all_paid()
         except sqlite3.Error as e:
             click.echo('ERROR!!!', e)

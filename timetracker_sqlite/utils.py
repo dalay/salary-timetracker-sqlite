@@ -75,10 +75,13 @@ class Timetracker:
             start_date = ts_time.strftime('%d.%m.%y')
             end_time = ts_time.strftime('%H:%M')
 
+            comment = (comment[:60] + '...') if len(comment) > 75 else comment
+
             table.add_row([start_date, start_time, end_time,
                            hours, paid, comment or ''])
 
-        print(table)
+        table.align = 'l'
+        return table
 
     def minutes_total(self, paid=0):
         sql = 'SELECT SUM(minuts) FROM {} WHERE paid=?'.format(TABLENAME)
