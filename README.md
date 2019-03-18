@@ -10,6 +10,8 @@ pip install salary-timetracker-sqlite
 ```bash
 tts [OPTIONS]
 
+To add a new entry just enter 'tts'. If there are no options, an interactive session is started.
+
 Options:
   -a, --show-all     Show all entries
   -p, --show-paid    Show paid
