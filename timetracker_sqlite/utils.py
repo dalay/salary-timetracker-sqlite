@@ -5,6 +5,26 @@ from prettytable import PrettyTable
 from .config import TABLENAME
 
 
+def format_comment(comment, max_line_length):
+    # accumulated line length
+    line_length = 0
+    words = comment.split(" ")
+    formatted_comment = ""
+    for word in words:
+        # if line_length + len(word) and a space is <= max_line_length
+        if line_length + (len(word) + 1) <= max_line_length:
+            # append the word and a space
+            formatted_comment = formatted_comment + word + " "
+            # length = length + length of word + length of space
+            line_length = line_length + len(word) + 1
+        else:
+            # append a line break, then the word and a space
+            formatted_comment = formatted_comment + "\n" + word + " "
+            # reset counter of length to the length of a word and a space
+            line_length = len(word) + 1
+    return formatted_comment
+
+
 class Db:
 
     def __init__(self, db_filename):
@@ -74,8 +94,7 @@ class Timetracker:
             ts_time = datetime.datetime.fromtimestamp(ts)
             start_date = ts_time.strftime('%d.%m.%y')
             end_time = ts_time.strftime('%H:%M')
-
-            comment = (comment[:60] + '...') if len(comment) > 60 else comment
+            comment = format_comment(comment, 60)
 
             table.add_row([start_date, start_time, end_time,
                            hours, paid, comment or ''])
