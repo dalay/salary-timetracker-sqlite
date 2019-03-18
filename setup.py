@@ -1,7 +1,7 @@
 from os.path import join, dirname
 from distutils.core import setup
 from setuptools import find_packages
-from timetracker import __version__
+from timetracker_sqlite import __version__
 
 setup(
     name='salary-timetracker-sqlite',
